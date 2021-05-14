@@ -21,14 +21,14 @@ Example #1 - Create a *bActuator* for setting a GPIO value.
 ### Inherited *bThing* APIs
 A *bActuator* inherits [bThing](https://github.com/diy365-mgos/bthing) APIs.
 - [mgos_bthing_get_id()](https://github.com/diy365-mgos/bthing#mgos_bthing_get_id)
-- [mgos_bthing_on_get_state](https://github.com/diy365-mgos/bthing#mgos_bthing_on_get_state)
+- [mgos_bthing_on_get_state()](https://github.com/diy365-mgos/bthing#mgos_bthing_on_get_state)
 - [mgos_bthing_get_state()](https://github.com/diy365-mgos/bthing#mgos_bthing_get_state)
-- [mgos_bthing_on_set_state](https://github.com/diy365-mgos/bthing#mgos_bthing_on_set_state)
+- [mgos_bthing_on_set_state()](https://github.com/diy365-mgos/bthing#mgos_bthing_on_set_state)
 - [mgos_bthing_set_state()](https://github.com/diy365-mgos/bthing#mgos_bthing_set_state)
 - All other [bThings Core Library](https://github.com/diy365-mgos/bthing) APIs...
 ### Inherited *bSensor* APIs
 A *bActuator* inherits [bSensor](https://github.com/diy365-mgos/bsensor) APIs.
-- [mgos_bsensor_polling_set](https://github.com/diy365-mgos/bsensor#mgos_bsensor_polling_set)
+- [mgos_bsensor_polling_set()](https://github.com/diy365-mgos/bsensor#mgos_bsensor_polling_set)
 
 *WARNING*: [mgos_bsensor_interrupt_set()](https://github.com/diy365-mgos/bsensor#mgos_bsensor_interrupt_set) doesn't support *bActuators*. If invoked passing a *bActuator* it returns `false`.
 ### MGOS_BACTUATOR_THINGCAST
