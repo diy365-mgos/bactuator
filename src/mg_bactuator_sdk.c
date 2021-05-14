@@ -21,7 +21,7 @@ bool mg_bactuator_init(struct mg_bthing_actu *actu) {
         return true;
       }
       LOG(LL_ERROR, ("Error creating bActuator '%s': unable to allocate memory for 'mg_bactuator_cfg'",
-        MG_BTHING_ACTU_CAST2(actu)->id));
+        MG_BTHING_ACTU_CAST4(actu)->id));
     }
     mg_bactuator_reset(actu);
   }
