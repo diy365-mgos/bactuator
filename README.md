@@ -14,8 +14,62 @@ libs:
 ```
 **C/C++ firmware samples** - Copy and paste one of the following examples in your `main.c` project file.
 
-Example #1 - Create a *bActuator* for setting a GPIO value.
+Example #1 - Create a *bActuator* for toggling the GPIO 2 state.
 ```c
+#include "mgos.h"
+#include "mgos_bactuator.h"
+
+static int gpio_pin = 2;
+
+static bool actuator_get_state_cb(mgos_bthing_t thing, mgos_bvar_t state, void *userdata) {
+  mgos_bvar_set_bool(state, mgos_gpio_read(gpio_pin));
+  return true;
+}
+
+static bool actuator_set_state_cb(mgos_bthing_t thing, mgos_bvarc_t state, void *userdata) {
+  mgos_gpio_write(gpio_pin, mgos_bvar_get_bool(state));
+  return true;
+}
+
+static void actuator_state_updated_cb(int ev, void *ev_data, void *userdata) {
+  mgos_bactuator_t actu = (mgos_bactuator_t)ev_data;
+  mgos_bthing_t thing = MGOS_BACTUATOR_THINGCAST(actu);
+  mgos_bvarc_t state = mgos_bthing_get_state(thing);
+
+  LOG(LL_INFO, ("The GPIO %d (actuator '%s') state: %s",
+    gpio_pin, mgos_bthing_get_id(thing), (mgos_bvar_get_bool(state) ? "TRUE" : "FALSE")));
+}
+
+void actuator_toggle_state(void *param) {
+  mgos_bactuator_t actu = (mgos_bactuator_t)param;
+  mgos_bthing_t thing = MGOS_BACTUATOR_THINGCAST(actu);
+
+  mgos_bvarc_t state = mgos_bthing_get_state(thing);
+  mgos_bvar_t new_state = mgos_bvar_new_bool(mgos_bvar_get_bool(state) ? false : true);
+  mgos_bthing_set_state(thing, new_state);
+  mgos_bvar_free(new_state);
+
+  (void) param;
+}
+
+enum mgos_app_init_result mgos_app_init(void) {
+
+  mgos_event_add_handler(MGOS_EV_BTHING_STATE_UPDATED, actuator_state_updated_cb, NULL);
+  mgos_gpio_setup_output(gpio_pin, false);
+
+  /* create the sensor */
+  mgos_bactuator_t a = mgos_bactuator_create("actu1", MGOS_BTHING_NOTIFY_STATE_ON_CHANGE);
+  /* set the get-state hadnler */
+  mgos_bthing_on_get_state(MGOS_BACTUATOR_THINGCAST(a), actuator_get_state_cb, NULL);
+  /* set the get-state hadnler */
+  mgos_bthing_on_set_state(MGOS_BACTUATOR_THINGCAST(a), actuator_set_state_cb, NULL);
+
+
+  // Simulate an external trigger for changing actuator state
+  mgos_set_timer(5000, MGOS_TIMER_REPEAT, actuator_toggle_state, a);
+  
+  return MGOS_APP_INIT_SUCCESS;
+}
 ```
 ## C/C++ APIs Reference
 ### Inherited *bThing* APIs
