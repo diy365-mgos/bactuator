@@ -16,13 +16,13 @@ mgos_bsensor_t MGOS_BACTUATOR_DOWNCAST(mgos_bactuator_t actuator) {
 
 mgos_bactuator_t mgos_bactuator_create(const char *id, enum mgos_bthing_notify_state notify_state) {
   mgos_bactuator_t MG_BACTUATOR_NEW(actu);
-  if (mg_bthing_init(MG_BTHING_SENS_CAST4(actu), id, MGOS_BACTUATOR_TYPE, notify_state)) {
+  if (mg_bthing_init(MG_BTHING_ACTU_CAST4(actu), id, MGOS_BACTUATOR_TYPE, notify_state)) {
     if (mg_bactuator_init(actu)) {
       LOG(LL_INFO, ("bActuator '%s' successfully created.", id));
       return actu;
     }
   }
-  mg_bthing_reset(MG_BTHING_SENS_CAST4(actu));
+  mg_bthing_reset(MG_BTHING_ACTU_CAST4(actu));
   free(actu);
   return NULL; 
 }
