@@ -47,7 +47,7 @@ struct mg_bactuator_cfg {
   struct mg_bactuator_base_class base_class; 
 };
 
-bool mg_bactuator_init(struct mg_bthing_actu *actu);
+bool mg_bactuator_init(struct mg_bthing_actu *actu  );
 
 void mg_bactuator_reset(struct mg_bthing_actu *actu);
 

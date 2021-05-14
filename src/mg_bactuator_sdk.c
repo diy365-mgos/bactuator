@@ -13,7 +13,7 @@ struct mg_bthing_actu *MG_BACTUATOR_CAST1(mgos_bactuator_t thing) {
 /*****************************************/
 
 bool mg_bactuator_init(struct mg_bthing_actu *actu) {
-  if (mg_bsensor_init(MG_BTHING_ACTU_CAST2(actu))) {
+  if (mg_bsensor_init(MG_BTHING_ACTU_CAST3(actu))) {
     if (mg_bthing_actu_init(actu)) {
       struct mg_bactuator_cfg *cfg = actu->cfg = calloc(1, sizeof(struct mg_bactuator_cfg));
       if (actu->cfg) {
