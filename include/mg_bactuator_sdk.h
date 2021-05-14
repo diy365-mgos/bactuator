@@ -47,9 +47,7 @@ struct mg_bactuator_cfg {
   struct mg_bactuator_base_class base_class; 
 };
 
-bool mg_bactuator_init(struct mg_bthing_actu *actu,
-                       const char *id, int type, 
-                       enum mgos_bthing_notify_state notify_state);
+bool mg_bactuator_init(struct mg_bthing_actu *actu);
 
 void mg_bactuator_reset(struct mg_bthing_actu *actu);
 
