@@ -21,8 +21,8 @@ mgos_bactuator_t mgos_bactuator_create(const char *id, enum mgos_bthing_notify_s
       LOG(LL_INFO, ("bActuator '%s' successfully created.", id));
       return actu;
     }
+    mg_bthing_reset(MG_BTHING_ACTU_CAST4(actu));
   }
-  mg_bthing_reset(MG_BTHING_ACTU_CAST4(actu));
   free(actu);
   return NULL; 
 }

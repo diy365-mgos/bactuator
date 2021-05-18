@@ -17,6 +17,7 @@ bool mg_bactuator_init(struct mg_bthing_actu *actu) {
     if (mg_bthing_actu_init(actu)) {
       struct mg_bactuator_cfg *cfg = actu->cfg = calloc(1, sizeof(struct mg_bactuator_cfg));
       if (actu->cfg) {
+        /* initalize base-class cfg */
         cfg->base_class.setting_state_cb = NULL;
         return true;
       }
@@ -30,6 +31,8 @@ bool mg_bactuator_init(struct mg_bthing_actu *actu) {
 
 void mg_bactuator_reset(struct mg_bthing_actu *actu) {
   struct mg_bactuator_cfg *cfg = MG_BACTUATOR_CFG(actu);
+
+  /* clear base-class cfg */
   if (cfg->base_class.setting_state_cb) {
     mg_bthing_on_setting_state(actu, cfg->base_class.setting_state_cb);
     cfg->base_class.setting_state_cb = NULL;
