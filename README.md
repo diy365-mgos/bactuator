@@ -19,7 +19,7 @@ Example #1 - Create a *bActuator* for toggling the GPIO 2 state.
 #include "mgos.h"
 #include "mgos_bactuator.h"
 
-static int gpio_pin = 2;
+static int gpio_pin = 2; // LED GPIO
 
 static bool actuator_get_state_cb(mgos_bthing_t thing, mgos_bvar_t state, void *userdata) {
   mgos_bvar_set_bool(state, mgos_gpio_read(gpio_pin));
@@ -40,6 +40,14 @@ static void actuator_state_updated_cb(int ev, void *ev_data, void *userdata) {
     gpio_pin, mgos_bthing_get_id(thing), (mgos_bvar_get_bool(state) ? "TRUE" : "FALSE")));
 }
 
+static void actuator_state_updating_cb(mgos_bthing_t thing, mgos_bvarc_t state, void *userdata) {
+  if (mgos_bvar_is_changed(state)) {
+    LOG(LL_INFO, ("State of '%s' udpated and changed.", mgos_bthing_get_id(thing)));
+  } else {
+    LOG(LL_INFO, ("State of '%s' udpated, but not changed.", mgos_bthing_get_id(thing)));
+  }
+}
+
 void actuator_toggle_state(void *param) {
   mgos_bactuator_t actu = (mgos_bactuator_t)param;
   mgos_bthing_t thing = MGOS_BACTUATOR_THINGCAST(actu);
@@ -54,14 +62,16 @@ void actuator_toggle_state(void *param) {
 
 enum mgos_app_init_result mgos_app_init(void) {
 
-  mgos_event_add_handler(MGOS_EV_BTHING_STATE_UPDATED, actuator_state_updated_cb, NULL);
+  mgos_event_add_handler(MGOS_EV_BTHING_UPDATING_STATE, actuator_state_updated_cb, NULL);
   mgos_gpio_setup_output(gpio_pin, false);
 
   /* create the sensor */
-  mgos_bactuator_t a = mgos_bactuator_create("actu1", MGOS_BTHING_NOTIFY_STATE_ON_CHANGE);
+  mgos_bactuator_t a = mgos_bactuator_create("actu1", MGOS_BTHING_PUB_STATE_MODE_CHANGED);
   /* set the get-state hadnler */
   mgos_bthing_on_get_state(MGOS_BACTUATOR_THINGCAST(a), actuator_get_state_cb, NULL);
-  /* set the get-state hadnler */
+  /* set the updating-state hadnler */
+  mgos_bthing_on_updating_state(MGOS_BACTUATOR_THINGCAST(a), actuator_state_updating_cb, NULL);
+  /* set the set-state hadnler */
   mgos_bthing_on_set_state(MGOS_BACTUATOR_THINGCAST(a), actuator_set_state_cb, NULL);
 
 
@@ -78,6 +88,7 @@ A *bActuator* inherits [bThing](https://github.com/diy365-mgos/bthing) APIs.
 - [mgos_bthing_on_get_state()](https://github.com/diy365-mgos/bthing#mgos_bthing_on_get_state)
 - [mgos_bthing_get_state()](https://github.com/diy365-mgos/bthing#mgos_bthing_get_state)
 - [mgos_bthing_on_set_state()](https://github.com/diy365-mgos/bthing#mgos_bthing_on_set_state)
+- [mgos_bthing_on_updating_state()](https://github.com/diy365-mgos/bthing#mgos_bthing_on_updating_state)
 - [mgos_bthing_set_state()](https://github.com/diy365-mgos/bthing#mgos_bthing_set_state)
 - All other [bThings Core Library](https://github.com/diy365-mgos/bthing) APIs...
 ### Inherited *bSensor* APIs
