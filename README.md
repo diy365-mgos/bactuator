@@ -118,13 +118,13 @@ mgos_bsensor_interrupt_set(MGOS_BACTUATOR_DOWNCAST(actu), gpio_pin,
 ```
 ### mgos_bactuator_create
 ```c
-mgos_bactuator_t mgos_bactuator_create(const char *id, enum mgos_bthing_notify_state notify_state);
+mgos_bactuator_t mgos_bactuator_create(const char *id, enum mgos_bthing_pub_state_mode pub_state_mode);
 ```
 Creates a *bActuator*. Returns `NULL` on error.
 
 |Parameter||
 |--|--|
 |id|The *bActuator* ID.|
-|notify_state|The [notify-state mode](https://github.com/diy365-mgos/bthing#enum-mgos_bthing_notify_state).|
+|pub_state_mode|The [publish-state mode](https://github.com/diy365-mgos/bthing#enum-mgos_bthing_pub_state_mode).|
 ## To Do
 - Implement javascript APIs for [Mongoose OS MJS](https://github.com/mongoose-os-libs/mjs).
