@@ -37,19 +37,19 @@ extern "C" {
 struct mg_bthing_actu *MG_BACTUATOR_CAST1(mgos_bactuator_t thing);
 /*****************************************/
 
-#define MG_BACTUATOR_CFG(s) ((struct mg_bactuator_cfg *)MG_BACTUATOR_CAST1(s)->cfg)
+#define MG_BACTUATOR_CFG(a) ((struct mg_bactuator_cfg *)(a ? MG_BACTUATOR_CAST1(a)->cfg : NULL))
 
-struct mg_bactuator_base_class {
+struct mg_bactuator_overrides {
   mg_bthing_setting_state_handler_t setting_state_cb;
 };
 
 struct mg_bactuator_cfg {
-  struct mg_bactuator_base_class base_class; 
+  struct mg_bactuator_overrides overrides; 
 };
 
-bool mg_bactuator_init(struct mg_bthing_actu *actu  );
+bool mg_bactuator_init(mgos_bactuator_t actu );
 
-void mg_bactuator_reset(struct mg_bthing_actu *actu);
+void mg_bactuator_reset(mgos_bactuator_t actu);
 
 #ifdef __cplusplus
 }
