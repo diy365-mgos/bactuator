@@ -12,19 +12,21 @@ struct mg_bthing_actu *MG_BACTUATOR_CAST1(mgos_bactuator_t thing) {
 }
 /*****************************************/
 
-bool mg_bactuator_init(mgos_bactuator_t actu, struct mg_bactuator_cfg *cfg) {
-  if (cfg) {
-    if (mg_bsensor_init(MG_BTHING_ACTU_CAST3(actu), &cfg->base)) {
-      if (mg_bthing_actu_init(actu)) {
+bool mg_bactuator_init(mgos_bactuator_t actu,
+                       struct mg_bsensor_cfg *sens_cfg,
+                       struct mg_bactuator_cfg *actu_cfg) {
+  if (sens_cfg && actu_cfg) {
+    if (mg_bsensor_init(MG_BTHING_ACTU_CAST3(actu), sens_cfg)) {
+      if (mg_bthing_actu_init(actu, actu_cfg)) {
         /* initalize base-class cfg */
-        cfg->overrides.setting_state_cb = NULL;
+        actu_cfg->overrides.setting_state_cb = NULL;
 
         return true;
       }
     }
     mg_bactuator_reset(actu);
   } else {
-    LOG(LL_ERROR, ("Invalid NULL 'cfg' parameter."));
+    LOG(LL_ERROR, ("Invalid NULL 'sens_cfg' or 'actu_cfg' parameter."));
   }
 
   LOG(LL_ERROR, ("Error initializing bActuator '%s'. See above error message for more details.", 

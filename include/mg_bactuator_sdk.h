@@ -47,7 +47,9 @@ struct mg_bactuator_cfg {
   struct mg_bactuator_overrides overrides; 
 };
 
-bool mg_bactuator_init(mgos_bactuator_t actu, struct mg_bactuator_cfg *cfg);
+bool mg_bactuator_init(mgos_bactuator_t actu,
+                       struct mg_bsensor_cfg *sens_cfg,
+                       struct mg_bactuator_cfg *actu_cfg);
 
 void mg_bactuator_reset(mgos_bactuator_t actu);
 
