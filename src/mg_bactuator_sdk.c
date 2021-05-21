@@ -12,20 +12,22 @@ struct mg_bthing_actu *MG_BACTUATOR_CAST1(mgos_bactuator_t thing) {
 }
 /*****************************************/
 
-bool mg_bactuator_init(mgos_bactuator_t actu) {
-  if (mg_bsensor_init(MG_BTHING_ACTU_CAST3(actu))) {
-    if (mg_bthing_actu_init(actu)) {
-      struct mg_bactuator_cfg *cfg = actu->cfg = calloc(1, sizeof(struct mg_bactuator_cfg));
-      if (actu->cfg) {
+bool mg_bactuator_init(mgos_bactuator_t actu, struct mg_bactuator_cfg *cfg) {
+  if (cfg) {
+    if (mg_bsensor_init(MG_BTHING_ACTU_CAST3(actu), &cfg->base)) {
+      if (mg_bthing_actu_init(actu)) {
         /* initalize base-class cfg */
         cfg->overrides.setting_state_cb = NULL;
+
         return true;
       }
-      LOG(LL_ERROR, ("Unable to allocate memory for 'mg_bactuator_cfg'"));
     }
     mg_bactuator_reset(actu);
+  } else {
+    LOG(LL_ERROR, ("Invalid NULL 'cfg' parameter."));
   }
-  LOG(LL_ERROR, ("Error creating bActuator '%s'. See above error message for more details.", 
+
+  LOG(LL_ERROR, ("Error initializing bActuator '%s'. See above error message for more details.", 
     mgos_bthing_get_id(MGOS_BACTUATOR_THINGCAST(actu))));
   return false; 
 }
