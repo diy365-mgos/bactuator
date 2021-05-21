@@ -100,9 +100,9 @@ Example:
 mgos_bactuator_t actu = mgos_bactuator_create(...);
 printf("Actuator %s successfully created", mgos_bthing_get_id(MGOS_BACTUATOR_THINGCAST(actu)));
 ```
-### MGOS_BACTUATOR_DOWNCAST
+### MGOS_BACTUATOR_SENSCAST
 ```c
-mgos_bsensor_t MGOS_BACTUATOR_DOWNCAST(mgos_bactuator_t actuator);
+mgos_bsensor_t MGOS_BACTUATOR_SENSCAST(mgos_bactuator_t actuator);
 ```
 Casts a *bActuator* to a *bSensor* to be used with [inherited bSensor APIs](#inherited-bsensor-apis).
 
@@ -113,7 +113,7 @@ Casts a *bActuator* to a *bSensor* to be used with [inherited bSensor APIs](#inh
 Example:
 ```c
 mgos_bactuator_t actu = mgos_bactuator_create(...);
-mgos_bsensor_interrupt_set(MGOS_BACTUATOR_DOWNCAST(actu), gpio_pin,
+mgos_bsensor_interrupt_set(MGOS_BACTUATOR_SENSCAST(actu), gpio_pin,
   MGOS_GPIO_PULL_UP, MGOS_GPIO_INT_EDGE_ANY, 50);
 ```
 ### mgos_bactuator_create

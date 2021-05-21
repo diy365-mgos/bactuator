@@ -33,7 +33,7 @@ typedef struct mg_bthing_actu *mgos_bactuator_t;
 
 mgos_bthing_t MGOS_BACTUATOR_THINGCAST(mgos_bactuator_t actuator);
 
-mgos_bsensor_t MGOS_BACTUATOR_DOWNCAST(mgos_bactuator_t actuator);
+mgos_bsensor_t MGOS_BACTUATOR_SENSCAST(mgos_bactuator_t actuator);
 
 mgos_bactuator_t mgos_bactuator_create(const char *id, enum mgos_bthing_pub_state_mode pub_state_mode);
 

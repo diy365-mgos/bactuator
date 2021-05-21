@@ -10,7 +10,7 @@ mgos_bthing_t MGOS_BACTUATOR_THINGCAST(mgos_bactuator_t actuator) {
   return MG_BTHING_ACTU_CAST5(MG_BACTUATOR_CAST1(actuator));
 }
 
-mgos_bsensor_t MGOS_BACTUATOR_DOWNCAST(mgos_bactuator_t actuator) {
+mgos_bsensor_t MGOS_BACTUATOR_SENSCAST(mgos_bactuator_t actuator) {
   return (mgos_bsensor_t)MG_BTHING_ACTU_CAST3(MG_BACTUATOR_CAST1(actuator));
 }
 
