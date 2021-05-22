@@ -41,7 +41,6 @@ void simulate_external_trigger(void *param) {
   mgos_bthing_t thing = MGOS_BACTUATOR_THINGCAST((mgos_bactuator_t)param);
   mgos_bvar_set_bool(new_state, mgos_bvar_get_bool(mgos_bthing_get_state(thing)) ? false : true);
   mgos_bthing_set_state(thing, new_state);
-  (void) param;
 }
 
 enum mgos_app_init_result mgos_app_init(void) {
