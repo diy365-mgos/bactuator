@@ -26,7 +26,7 @@ mgos_bactuator_t mgos_bactuator_create(const char *id, enum mgos_bthing_pub_stat
       }
       mg_bthing_reset(MG_BTHING_ACTU_CAST4(actu));
     } else {
-      LOG(LL_ERROR, ("Unable to allocate memory for 'mg_bsensor_cfg'"));
+      LOG(LL_ERROR, ("Unable to allocate memory for 'mg_bsensor_cfg' and/or 'mg_bactuator_cfg'"));
     }
     free(sens_cfg);
     free(actu_cfg);
