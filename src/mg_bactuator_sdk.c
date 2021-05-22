@@ -45,6 +45,6 @@ void mg_bactuator_reset(mgos_bactuator_t actu) {
   
   // reset actuator-base obj
   mg_bthing_actu_reset(MG_BACTUATOR_CAST1(actu));
-  // reset sesnto-base obj
+  // reset sensor-base obj
   mg_bsensor_reset(MG_BTHING_ACTU_CAST3(MG_BACTUATOR_CAST1(actu)));
 }
