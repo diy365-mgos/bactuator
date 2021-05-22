@@ -18,7 +18,7 @@ bool mg_bactuator_init(mgos_bactuator_t actu,
   if (sens_cfg && actu_cfg) {
     if (mg_bsensor_init(MG_BTHING_ACTU_CAST3(actu), sens_cfg)) {
       if (mg_bthing_actu_init(actu, actu_cfg)) {
-        /* initalize base-class cfg */
+        /* initalize overrides cfg */
         actu_cfg->overrides.setting_state_cb = NULL;
 
         return true;
@@ -37,7 +37,7 @@ bool mg_bactuator_init(mgos_bactuator_t actu,
 void mg_bactuator_reset(mgos_bactuator_t actu) {
   struct mg_bactuator_cfg *cfg = MG_BACTUATOR_CFG(actu);
 
-  /* clear base-class cfg */
+  /* clear overrides cfg */
   if (cfg->overrides.setting_state_cb) {
     mg_bthing_on_setting_state(actu, cfg->overrides.setting_state_cb);
     cfg->overrides.setting_state_cb = NULL;
