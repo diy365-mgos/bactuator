@@ -26,7 +26,7 @@ bool mg_bactuator_init(mgos_bactuator_t actu,
     }
     mg_bactuator_reset(actu);
   } else {
-    LOG(LL_ERROR, ("Invalid NULL 'sens_cfg' or 'actu_cfg' parameter."));
+    LOG(LL_ERROR, ("Invalid NULL 'sens_cfg' and/or 'actu_cfg' parameter."));
   }
 
   LOG(LL_ERROR, ("Error initializing bActuator '%s'. See above error message for more details.", 
