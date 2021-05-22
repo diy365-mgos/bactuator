@@ -26,7 +26,6 @@ libs:
 #include "mgos_bthing_gpio.h"
 
 static int gpio_pin = 2; // LED GPIO
-static mgos_bvar_t new_state;
 
 static void actuator_state_published_cb(int ev, void *ev_data, void *userdata) {
   mgos_bactuator_t actu = (mgos_bactuator_t)ev_data;
@@ -37,12 +36,11 @@ static void actuator_state_published_cb(int ev, void *ev_data, void *userdata) {
     gpio_pin, mgos_bthing_get_id(thing), (mgos_bvar_get_bool(state) ? "ON" : "OFF")));
 }
 
+static mgos_bvar_t new_state;
 void simulate_external_trigger(void *param) {
   mgos_bthing_t thing = MGOS_BACTUATOR_THINGCAST((mgos_bactuator_t)param);
-
   mgos_bvar_set_bool(new_state, mgos_bvar_get_bool(mgos_bthing_get_state(thing)) ? false : true);
   mgos_bthing_set_state(thing, new_state);
-
   (void) param;
 }
 
