@@ -16,7 +16,9 @@ bool mg_bactuator_init(mgos_bactuator_t actu,
                        struct mg_bsensor_cfg *sens_cfg,
                        struct mg_bactuator_cfg *actu_cfg) {
   if (sens_cfg && actu_cfg) {
+    // init sensor-base obj
     if (mg_bsensor_init(MG_BTHING_ACTU_CAST3(actu), sens_cfg)) {
+      // init actuator-base obj
       if (mg_bthing_actu_init(actu, actu_cfg)) {
         /* initalize overrides cfg */
         actu_cfg->overrides.setting_state_cb = NULL;
