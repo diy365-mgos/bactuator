@@ -24,12 +24,12 @@ mgos_bactuator_t mgos_bactuator_create(const char *id, enum mgos_bthing_pub_stat
         LOG(LL_INFO, ("bActuator '%s' successfully created.", id));
         return actu;
       }
-      mg_bthing_reset(MG_BTHING_ACTU_CAST4(actu));
     } else {
       LOG(LL_ERROR, ("Unable to allocate memory for 'mg_bsensor_cfg' and/or 'mg_bactuator_cfg'"));
     }
     free(sens_cfg);
     free(actu_cfg);
+    mg_bthing_reset(MG_BTHING_ACTU_CAST4(actu));
   }
   free(actu);
   LOG(LL_ERROR, ("Error creating bActuator '%s'. See above error message for more details.'", (id ? id : "")));
