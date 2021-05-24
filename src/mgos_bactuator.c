@@ -20,7 +20,7 @@ mgos_bactuator_t mgos_bactuator_create(const char *id, enum mgos_bthing_pub_stat
     struct mg_bsensor_cfg *sens_cfg = calloc(1, sizeof(struct mg_bsensor_cfg));
     struct mg_bactuator_cfg *actu_cfg = calloc(1, sizeof(struct mg_bactuator_cfg));
     if (sens_cfg && actu_cfg) {
-      if (mg_bactuator_init(actu, sens_cfg, actu_cfg)) {
+      if (mg_bactuator_init(actu, actu_cfg, sens_cfg)) {
         LOG(LL_INFO, ("bActuator '%s' successfully created.", id));
         return actu;
       }
