@@ -47,13 +47,13 @@ enum mgos_app_init_result mgos_app_init(void) {
   new_state = mgos_bvar_new();
   mgos_event_add_handler(MGOS_EV_BTHING_PUBLISHING_STATE, actuator_state_published_cb, NULL);
 
-  /* create the sensor */
-  mgos_bactuator_t a = mgos_bactuator_create("actu1", MGOS_BTHING_PUB_STATE_MODE_CHANGED);
+  /* create the actuator */
+  mgos_bactuator_t actu = mgos_bactuator_create("actu1", MGOS_BTHING_PUB_STATE_MODE_CHANGED);
   /* attach GPIO  */
-  mgos_bthing_gpio_attach(MGOS_BACTUATOR_THINGCAST(a), gpio_pin, false, true);
+  mgos_bthing_gpio_attach(MGOS_BACTUATOR_THINGCAST(actu), gpio_pin, false, true);
 
   // Simulate an external trigger for changing actuator state
-  mgos_set_timer(5000, MGOS_TIMER_REPEAT, simulate_external_trigger, a);
+  mgos_set_timer(5000, MGOS_TIMER_REPEAT, simulate_external_trigger, actu);
   
   return MGOS_APP_INIT_SUCCESS;
 }
