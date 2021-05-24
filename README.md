@@ -32,8 +32,8 @@ static void actuator_state_published_cb(int ev, void *ev_data, void *userdata) {
   mgos_bthing_t thing = MGOS_BACTUATOR_THINGCAST(actu);
   mgos_bvarc_t state = mgos_bthing_get_state(thing);
 
-  LOG(LL_INFO, ("The GPIO %d (actuator '%s') state: %s",
-    gpio_pin, mgos_bthing_get_id(thing), (mgos_bvar_get_bool(state) ? "ON" : "OFF")));
+  LOG(LL_INFO, ("Actuator '%s' (on GPIO %d) state: %s",
+    mgos_bthing_get_id(thing), gpio_pin, (mgos_bvar_get_bool(state) ? "ON" : "OFF")));
 }
 
 static mgos_bvar_t new_state;
