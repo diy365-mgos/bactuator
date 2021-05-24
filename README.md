@@ -80,7 +80,7 @@ A bActuator inherits [bSensor](https://github.com/diy365-mgos/bsensor) APIs.
 The bActuator type ID returned by [mgos_bthing_get_type()](https://github.com/diy365-mgos/bthing#mgos_bthing_get_type). It can be used with [mgos_bthing_is_typeof()](https://github.com/diy365-mgos/bthing#mgos_bthing_is_typeof).
 
 Example:
-```c++
+```c
 if (mgos_bthing_is_typeof(MGOS_BACTUATOR_TYPE)) { LOG(LL_INFO, ("I'm a bActuator.")); }
 if (mgos_bthing_is_typeof(MGOS_BTHING_TYPE_ACTUATOR)) { LOG(LL_INFO, ("I'm a bThing actuator.")); }
 if (mgos_bthing_is_typeof(MGOS_BSENSOR_TYPE)) { LOG(LL_INFO, ("I'm a bSensor.")); }
