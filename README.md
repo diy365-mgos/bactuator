@@ -81,10 +81,15 @@ The bActuator type ID returned by [mgos_bthing_get_type()](https://github.com/di
 
 Example:
 ```c
-if (mgos_bthing_is_typeof(MGOS_BACTUATOR_TYPE)) { LOG(LL_INFO, ("I'm a bActuator.")); }
-if (mgos_bthing_is_typeof(MGOS_BTHING_TYPE_ACTUATOR)) { LOG(LL_INFO, ("I'm a bThing actuator.")); }
-if (mgos_bthing_is_typeof(MGOS_BSENSOR_TYPE)) { LOG(LL_INFO, ("I'm a bSensor.")); }
-if (mgos_bthing_is_typeof(MGOS_BTHING_TYPE_SENSOR)) { LOG(LL_INFO, ("I'm a bThing sensor.")); }
+mgos_bactuator_t actu = mgos_bactuator_create(...);
+if (mgos_bthing_is_typeof(MGOS_BACTUATOR_THINGCAST(actu), MGOS_BACTUATOR_TYPE))
+  LOG(LL_INFO, ("I'm a bActuator."));
+if (mgos_bthing_is_typeof(MGOS_BACTUATOR_THINGCAST(actu), MGOS_BTHING_TYPE_ACTUATOR))
+  LOG(LL_INFO, ("I'm a bThing actuator."));
+if (mgos_bthing_is_typeof(MGOS_BACTUATOR_THINGCAST(actu), MGOS_BSENSOR_TYPE))
+  LOG(LL_INFO, ("I'm a bSensor."));
+if (mgos_bthing_is_typeof(MGOS_BACTUATOR_THINGCAST(actu), MGOS_BTHING_TYPE_SENSOR))
+  LOG(LL_INFO, ("I'm a bThing sensor."));
 ```
 Output console:
 ```bash
