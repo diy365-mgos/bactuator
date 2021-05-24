@@ -111,8 +111,7 @@ Casts a bActuator to a generic bThing to be used with [inherited bThing APIs](#i
 Example:
 ```c
 mgos_bactuator_t actu = mgos_bactuator_create(...);
-LOG(LL_INFO, ("Actuator %s successfully created",
-  mgos_bthing_get_id(MGOS_BACTUATOR_THINGCAST(actu))));
+LOG(LL_INFO, ("%s successfully created.", mgos_bthing_get_id(MGOS_BACTUATOR_THINGCAST(actu))));
 ```
 ### MGOS_BACTUATOR_SENSCAST
 ```c
