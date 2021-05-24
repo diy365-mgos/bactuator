@@ -106,12 +106,13 @@ Casts a bActuator to a generic bThing to be used with [inherited bThing APIs](#i
 
 |Parameter||
 |--|--|
-|sensor|A bActuator.|
+|actuator|A bActuator.|
 
 Example:
 ```c
 mgos_bactuator_t actu = mgos_bactuator_create(...);
-printf("Actuator %s successfully created", mgos_bthing_get_id(MGOS_BACTUATOR_THINGCAST(actu)));
+LOG(LL_INFO, ("Actuator %s successfully created",
+  mgos_bthing_get_id(MGOS_BACTUATOR_THINGCAST(actu))));
 ```
 ### MGOS_BACTUATOR_SENSCAST
 ```c
