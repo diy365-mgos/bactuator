@@ -27,7 +27,7 @@ libs:
 
 static int gpio_pin = 2; // LED GPIO
 
-static void actuator_state_published_cb(int ev, void *ev_data, void *userdata) {
+static void actuator_state_changed_cb(int ev, void *ev_data, void *userdata) {
   mgos_bactuator_t actu = (mgos_bactuator_t)ev_data;
   mgos_bthing_t thing = MGOS_BACTUATOR_THINGCAST(actu);
   mgos_bvarc_t state = mgos_bthing_get_state(thing);
@@ -45,13 +45,13 @@ void simulate_external_trigger(void *param) {
 
 enum mgos_app_init_result mgos_app_init(void) {
   new_state = mgos_bvar_new();
-  mgos_event_add_handler(MGOS_EV_BTHING_PUBLISHING_STATE, actuator_state_published_cb, NULL);
+  mgos_event_add_handler(MGOS_EV_BTHING_STATE_CHANGED, actuator_state_changed_cb, NULL);
 
   /* create the actuator */
   mgos_bactuator_t actu = mgos_bactuator_create("actu1", MGOS_BTHING_PUB_STATE_MODE_CHANGED);
   /* attach GPIO  */
   mgos_bthing_gpio_attach(MGOS_BACTUATOR_THINGCAST(actu), gpio_pin, false, true);
-
+  
   // Simulate an external trigger for changing actuator state
   mgos_set_timer(5000, MGOS_TIMER_REPEAT, simulate_external_trigger, actu);
   
