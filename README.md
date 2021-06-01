@@ -48,7 +48,7 @@ enum mgos_app_init_result mgos_app_init(void) {
   mgos_event_add_handler(MGOS_EV_BTHING_STATE_CHANGED, actuator_state_changed_cb, NULL);
 
   /* create the actuator */
-  mgos_bactuator_t actu = mgos_bactuator_create("actu1", MGOS_BTHING_PUB_STATE_MODE_CHANGED);
+  mgos_bactuator_t actu = mgos_bactuator_create("actu1");
   /* attach GPIO  */
   mgos_bthing_gpio_attach(MGOS_BACTUATOR_THINGCAST(actu), gpio_pin, false, true);
   
@@ -131,13 +131,12 @@ mgos_bsensor_interrupt_set(MGOS_BACTUATOR_SENSCAST(actu), gpio_pin,
 ```
 ### mgos_bactuator_create
 ```c
-mgos_bactuator_t mgos_bactuator_create(const char *id, enum mgos_bthing_pub_state_mode pub_state_mode);
+mgos_bactuator_t mgos_bactuator_create(const char *id);
 ```
 Creates a bActuator. Returns `NULL` on error.
 
 |Parameter||
 |--|--|
 |id|The bActuator ID.|
-|pub_state_mode|The [publish-state mode](https://github.com/diy365-mgos/bthing#enum-mgos_bthing_pub_state_mode).|
 ## To Do
 - Implement javascript APIs for [Mongoose OS MJS](https://github.com/mongoose-os-libs/mjs).
