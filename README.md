@@ -70,9 +70,9 @@ A bActuator inherits [bThing](https://github.com/diy365-mgos/bthing) APIs.
 - All other [bThings core library](https://github.com/diy365-mgos/bthing) APIs...
 ### Inherited bSensor APIs
 A bActuator inherits [bSensor](https://github.com/diy365-mgos/bsensor) APIs.
-- [mgos_bsensor_polling_set()](https://github.com/diy365-mgos/bsensor#mgos_bsensor_polling_set)
+- [mgos_bsensor_set_polling()](https://github.com/diy365-mgos/bsensor#mgos_bsensor_set_polling)
 
-*WARNING*: [mgos_bsensor_interrupt_set()](https://github.com/diy365-mgos/bsensor#mgos_bsensor_interrupt_set) doesn't support bActuators. If invoked passing a bActuator it returns `false`.
+*WARNING*: [mgos_bsensor_set_interrupt()](https://github.com/diy365-mgos/bsensor#mgos_bsensor_set_interrupt) doesn't support bActuators. If invoked passing a bActuator it returns `false`.
 ### MGOS_BACTUATOR_TYPE
 ```c
 #define MGOS_BACTUATOR_TYPE 512 
@@ -126,7 +126,7 @@ Casts a bActuator to a bSensor to be used with [inherited bSensor APIs](#inherit
 Example:
 ```c
 mgos_bactuator_t actu = mgos_bactuator_create(...);
-mgos_bsensor_interrupt_set(MGOS_BACTUATOR_SENSCAST(actu), gpio_pin,
+mgos_bsensor_set_interrupt(MGOS_BACTUATOR_SENSCAST(actu), gpio_pin,
   MGOS_GPIO_PULL_UP, MGOS_GPIO_INT_EDGE_ANY, 50);
 ```
 ### mgos_bactuator_create
