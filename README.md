@@ -50,7 +50,7 @@ enum mgos_app_init_result mgos_app_init(void) {
   /* create the actuator */
   mgos_bactuator_t actu = mgos_bactuator_create("actu1");
   /* attach GPIO  */
-  mgos_bthing_gpio_attach(MGOS_BACTUATOR_THINGCAST(actu), gpio_pin, false, true);
+  mgos_bthing_gpio_attach_ex(MGOS_BACTUATOR_THINGCAST(actu), gpio_pin, false, MGOS_BTHING_GPIO_PULL_AUTO);
   
   // Simulate an external trigger for changing actuator state
   mgos_set_timer(5000, MGOS_TIMER_REPEAT, simulate_external_trigger, actu);
