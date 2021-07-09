@@ -28,12 +28,10 @@ libs:
 static int gpio_pin = 2; // LED GPIO
 
 static void actuator_state_changed_cb(int ev, void *ev_data, void *userdata) {
-  mgos_bactuator_t actu = (mgos_bactuator_t)ev_data;
-  mgos_bthing_t thing = MGOS_BACTUATOR_THINGCAST(actu);
-  mgos_bvarc_t state = mgos_bthing_get_state(thing);
+  struct mgos_bthing_state_changed_arg *arg = (struct mgos_bthing_state_changed_arg *)ev_data;
 
   LOG(LL_INFO, ("Actuator '%s' (on GPIO %d) state: %s",
-    mgos_bthing_get_id(thing), gpio_pin, (mgos_bvar_get_bool(state) ? "ON" : "OFF")));
+    mgos_bthing_get_id(arg->thing), gpio_pin, (mgos_bvar_get_bool(arg->state) ? "ON" : "OFF")));
 }
 
 static mgos_bvar_t new_state;
