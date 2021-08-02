@@ -14,7 +14,7 @@ Create a bActuator for toggling the GPIO #2 state.
 Include these libraries in your `mos.yml` file.
 ```yaml
 libs:
- - origin: https://github.com/diy365-mgos/bactuator
+  - origin: https://github.com/diy365-mgos/bactuator
   - origin: https://github.com/diy365-mgos/bthing-gpio
 ```
 ```c
