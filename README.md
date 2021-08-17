@@ -43,7 +43,7 @@ enum mgos_app_init_result mgos_app_init(void) {
   mgos_event_add_handler(MGOS_EV_BTHING_STATE_CHANGED, actuator_state_changed_cb, NULL);
 
   /* create the actuator */
-  mgos_bactuator_t actu = mgos_bactuator_create("actu1");
+  mgos_bactuator_t actu = mgos_bactuator_create("actu1", NULL);
   /* attach GPIO  */
   mgos_bthing_gpio_attach(MGOS_BACTUATOR_THINGCAST(actu), gpio_pin, false, MGOS_BTHING_GPIO_PULL_AUTO);
   
@@ -126,12 +126,13 @@ mgos_bsensor_update_on_int(MGOS_BACTUATOR_SENSCAST(actu), gpio_pin,
 ```
 ### mgos_bactuator_create
 ```c
-mgos_bactuator_t mgos_bactuator_create(const char *id);
+mgos_bactuator_t mgos_bactuator_create(const char *id, const char *domain);
 ```
 Creates a bActuator. Returns `NULL` on error.
 
 |Parameter||
 |--|--|
 |id|The bActuator ID.|
+|domain|The domain name or `NULL`.|
 ## To Do
 - Implement javascript APIs for [Mongoose OS MJS](https://github.com/mongoose-os-libs/mjs).

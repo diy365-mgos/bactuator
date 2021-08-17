@@ -37,7 +37,7 @@ mgos_bthing_t MGOS_BACTUATOR_THINGCAST(mgos_bactuator_t actuator);
 
 mgos_bsensor_t MGOS_BACTUATOR_SENSCAST(mgos_bactuator_t actuator);
 
-mgos_bactuator_t mgos_bactuator_create(const char *id);
+mgos_bactuator_t mgos_bactuator_create(const char *id, const char *domain);
 
 #ifdef __cplusplus
 }

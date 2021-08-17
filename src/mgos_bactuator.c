@@ -14,9 +14,9 @@ mgos_bsensor_t MGOS_BACTUATOR_SENSCAST(mgos_bactuator_t actuator) {
   return (mgos_bsensor_t)MG_BTHING_ACTU_CAST3(MG_BACTUATOR_CAST1(actuator));
 }
 
-mgos_bactuator_t mgos_bactuator_create(const char *id) {
+mgos_bactuator_t mgos_bactuator_create(const char *id, const char *domain) {
   mgos_bactuator_t MG_BACTUATOR_NEW(actu);
-  if (mg_bthing_init(MG_BTHING_ACTU_CAST4(actu), id, MGOS_BACTUATOR_TYPE)) {
+  if (mg_bthing_init(MG_BTHING_ACTU_CAST4(actu), id, MGOS_BACTUATOR_TYPE, domain)) {
     struct mg_bsensor_cfg *sens_cfg = calloc(1, sizeof(struct mg_bsensor_cfg));
     struct mg_bactuator_cfg *actu_cfg = calloc(1, sizeof(struct mg_bactuator_cfg));
     if (sens_cfg && actu_cfg) {
