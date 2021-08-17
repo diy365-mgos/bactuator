@@ -31,7 +31,7 @@ bool mg_bactuator_init(mgos_bactuator_t actu,
   }
 
   LOG(LL_ERROR, ("Error initializing bActuator '%s'. See above error message for more details.", 
-    mgos_bthing_get_id(MGOS_BACTUATOR_THINGCAST(actu))));
+    mgos_bthing_get_uid(MGOS_BACTUATOR_THINGCAST(actu))));
   return false; 
 }
 

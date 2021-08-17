@@ -28,7 +28,7 @@ static void actuator_state_changed_cb(int ev, void *ev_data, void *userdata) {
   struct mgos_bthing_state_changed_arg *arg = (struct mgos_bthing_state_changed_arg *)ev_data;
 
   LOG(LL_INFO, ("Actuator '%s' (on GPIO %d) state: %s",
-    mgos_bthing_get_id(arg->thing), gpio_pin, (mgos_bvar_get_bool(arg->state) ? "ON" : "OFF")));
+    mgos_bthing_get_uid(arg->thing), gpio_pin, (mgos_bvar_get_bool(arg->state) ? "ON" : "OFF")));
 }
 
 static mgos_bvar_t new_state;
@@ -56,7 +56,7 @@ enum mgos_app_init_result mgos_app_init(void) {
 ## C/C++ APIs Reference
 ### Inherited bThing APIs
 A bActuator inherits [bThing](https://github.com/diy365-mgos/bthing) APIs.
-- [mgos_bthing_get_id()](https://github.com/diy365-mgos/bthing#mgos_bthing_get_id)
+- [mgos_bthing_get_uid()](https://github.com/diy365-mgos/bthing#mgos_bthing_get_uid)
 - [mgos_bthing_on_get_state()](https://github.com/diy365-mgos/bthing#mgos_bthing_on_get_state)
 - [mgos_bthing_get_state()](https://github.com/diy365-mgos/bthing#mgos_bthing_get_state)
 - [mgos_bthing_on_set_state()](https://github.com/diy365-mgos/bthing#mgos_bthing_on_set_state)
@@ -106,7 +106,7 @@ Casts a bActuator to a generic bThing to be used with [inherited bThing APIs](#i
 Example:
 ```c
 mgos_bactuator_t actu = mgos_bactuator_create(...);
-LOG(LL_INFO, ("%s successfully created.", mgos_bthing_get_id(MGOS_BACTUATOR_THINGCAST(actu))));
+LOG(LL_INFO, ("%s successfully created.", mgos_bthing_get_uid(MGOS_BACTUATOR_THINGCAST(actu))));
 ```
 ### MGOS_BACTUATOR_SENSCAST
 ```c
