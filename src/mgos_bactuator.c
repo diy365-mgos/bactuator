@@ -21,7 +21,7 @@ mgos_bactuator_t mgos_bactuator_create(const char *id, const char *domain) {
     struct mg_bactuator_cfg *actu_cfg = calloc(1, sizeof(struct mg_bactuator_cfg));
     if (sens_cfg && actu_cfg) {
       if (mg_bactuator_init(actu, actu_cfg, sens_cfg)) {
-        LOG(LL_INFO, ("bActuator '%s' successfully created.", id));
+        LOG(LL_INFO, ("bActuator '%s' successfully created.", mgos_bthing_get_uid(MGOS_BACTUATOR_THINGCAST(actu))));
         return actu;
       }
     } else {
