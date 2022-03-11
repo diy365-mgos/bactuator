@@ -26,10 +26,6 @@
 extern "C" {
 #endif
 
-// [   ACTUATORS ]-[    SENSORS ]-[ SYS]
-// [][][][][][][1]-[][][][][][][]-[0][0]
-#define MGOS_BACTUATOR_TYPE 512 
-
 struct mg_bthing_actu;
 typedef struct mg_bthing_actu *mgos_bactuator_t;
 
