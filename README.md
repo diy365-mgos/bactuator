@@ -25,7 +25,7 @@ libs:
 static int gpio_pin = 2; // LED GPIO
 
 static void actuator_state_changed_cb(int ev, void *ev_data, void *userdata) {
-  struct mgos_bthing_state_changed_arg *arg = (struct mgos_bthing_state_changed_arg *)ev_data;
+  struct mgos_bthing_state *arg = (struct mgos_bthing_state *)ev_data;
 
   LOG(LL_INFO, ("Actuator '%s' (on GPIO %d) state: %s",
     mgos_bthing_get_uid(arg->thing), gpio_pin, (mgos_bvar_get_bool(arg->state) ? "ON" : "OFF")));
