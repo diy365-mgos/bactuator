@@ -70,9 +70,9 @@ A bActuator inherits [bSensor](https://github.com/diy365-mgos/bsensor) APIs.
 *WARNING*: [mgos_bsensor_update_on_int()](https://github.com/diy365-mgos/bsensor#mgos_bsensor_update_on_int) doesn't support bActuators. If invoked passing a bActuator it returns `false`.
 ### MGOS_BACTUATOR_TYPE
 ```c
-#define MGOS_BACTUATOR_TYPE 512 
+#define MGOS_BACTUATOR_TYPE
 ```
-The bActuator type ID returned by [mgos_bthing_get_type()](https://github.com/diy365-mgos/bthing#mgos_bthing_get_type). It can be used with [mgos_bthing_is_typeof()](https://github.com/diy365-mgos/bthing#mgos_bthing_is_typeof).
+The bActuator type ID. It can be used with [mgos_bthing_is_typeof()](https://github.com/diy365-mgos/bthing#mgos_bthing_is_typeof).
 
 Example:
 ```c
