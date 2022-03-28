@@ -6,7 +6,7 @@ A bActuator offers a common set of APIs for managing any kind of physical actuat
 ## Features
 - **Universal value-types** - You can set or read any actuator state value within the supported [bVariant](https://github.com/diy365-mgos/bvar) data-types.
 - **GPIO as actuators** - You can easily read and write GPIO as actuators. Just include the [bThings GPIO library](https://github.com/diy365-mgos/bthing-gpio) in your project.
-## Get Started in C/C++
+## GET STARTED
 Copy, build and flash one of the following ready-to-use firmwares.
 #### Example 1 - Toggle GPIO state
 Create a bActuator for toggling the GPIO #2 state.
